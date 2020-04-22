@@ -2,6 +2,7 @@ package grab
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -24,8 +25,8 @@ func Get(dst, urlStr string) (*Response, error) {
 	return resp, resp.Err()
 }
 
-func GetWithClient(dst, urlStr string, client *Client) (*Response, error) {
-	req, err := NewRequest(dst, urlStr)
+func GetWithClient(dst string, client *Client, httpReq *http.Request) (*Response, error) {
+	req, err := NewRequestWithCustomHttpRequest(dst, httpReq)
 	if err != nil {
 		return nil, err
 	}

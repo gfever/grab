@@ -100,6 +100,17 @@ func NewRequest(dst, urlStr string) (*Request, error) {
 	}, nil
 }
 
+func NewRequestWithCustomHttpRequest(dst string, req *http.Request) (*Request, error) {
+	if dst == "" {
+		dst = "."
+	}
+
+	return &Request{
+		HTTPRequest: req,
+		Filename:    dst,
+	}, nil
+}
+
 // Context returns the request's context. To change the context, use
 // WithContext.
 //
