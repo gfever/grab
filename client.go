@@ -52,6 +52,13 @@ func NewClient() *Client {
 	}
 }
 
+func NewClientWithParams(userAgent string, client *http.Client) *Client {
+	return &Client{
+		UserAgent:  userAgent,
+		HTTPClient: client,
+	}
+}
+
 // DefaultClient is the default client and is used by all Get convenience
 // functions.
 var DefaultClient = NewClient()

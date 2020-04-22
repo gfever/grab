@@ -24,6 +24,16 @@ func Get(dst, urlStr string) (*Response, error) {
 	return resp, resp.Err()
 }
 
+func GetWithClient(dst, urlStr string, client *Client) (*Response, error) {
+	req, err := NewRequest(dst, urlStr)
+	if err != nil {
+		return nil, err
+	}
+
+	resp := client.Do(req)
+	return resp, resp.Err()
+}
+
 // GetBatch sends multiple HTTP requests and downloads the content of the
 // requested URLs to the given destination directory using the given number of
 // concurrent worker goroutines.
